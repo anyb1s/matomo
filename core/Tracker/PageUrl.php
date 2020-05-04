@@ -44,6 +44,11 @@ class PageUrl
         $parsedUrl = self::cleanupHostAndHashTag($parsedUrl, $idSite);
         $parametersToExclude = self::getQueryParametersToExclude($idSite);
 
+        if (!empty($parsedUrl['host']) && strpos($parsedUrl['host'], 'instagram.com') !== false) {
+            $parametersToExclude[] = 'e';
+            $parametersToExclude[] = 's';
+        }
+
         if (empty($parsedUrl['query'])) {
             if (empty($parsedUrl['fragment'])) {
                 return UrlHelper::getParseUrlReverse($parsedUrl);
