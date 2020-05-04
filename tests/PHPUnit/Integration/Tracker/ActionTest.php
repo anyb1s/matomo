@@ -116,6 +116,14 @@ class ActionTest extends IntegrationTestCase
             array('http://a.com/index;jsessionid=value?p1=v1&p2=v2',
                   array('http://a.com/index?p1=v1&p2=v2',
                         'http://a.com/index?p1=v1')),
+
+            // instagram referrer urls (s & e will be always excluded - see PageUrl::excludeQueryParametersFromUrl)
+            array('https://l.instagram.com/?u=https%3A%2F%2Fexample.com%2Fexample.com&amp;e=BTPcuqWixl6Mf5hgYPp6wXIlstuaEdJssdYEvT9s8-6yme_lb275lY2Bwc-YvE-fZNtSKux4QB-v8xNk&amp;s=1',
+                  array('https://l.instagram.com/?u=https%3A%2F%2Fexample.com%2Fexample.com',
+                        'https://l.instagram.com/?u=https%3A%2F%2Fexample.com%2Fexample.com')),
+            array('https://m.instagram.com/?u=https%3A%2F%2Fexample.com%2Fexample.com&e=BTPcuqWixl6Mf5hgYPp6wXIlstuaEdJssdYEvT9s8-6yme_lb275lY2Bwc-YvE-fZNtSKux4QB-v8xNk',
+                  array('https://m.instagram.com/?u=https%3A%2F%2Fexample.com%2Fexample.com',
+                        'https://m.instagram.com/?u=https%3A%2F%2Fexample.com%2Fexample.com')),
         );
 
         return $urls;
